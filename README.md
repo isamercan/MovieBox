@@ -5,9 +5,7 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 
 ## Screenshots
 
-<img src="Screenshots/Home.png" width=200 height=433> 
-<img src="Screenshots/Detail.png" width=200 height=433>
-<img src="Screenshots/Reviews.png" width=200 height=433>
+<img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433> <img src="Screenshots/Reviews.png" width=200 height=433>
 
 
 ## How to run
