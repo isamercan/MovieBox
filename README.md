@@ -5,7 +5,9 @@ Movies app written in Swift 5 using the TMDb API and demonstrating Clean Archite
 
 ## Screenshots
 
-<img src="Screenshots/Home.png" width=200 height=433> <img src="Screenshots/Home-Fav.png" width=200 height=433> <img src="Screenshots/Detail.png" width=200 height=433> <img src="Screenshots/Detail-Info.png" width=200 height=433> <img src="Screenshots/Detail-Reviews.png" width=200 height=433>
+<img src="https://user-images.githubusercontent.com/299584/209019659-bcffee15-9d07-4d7d-8df5-a29bcb665830.png" width=200 height=433> <img src="https://user-images.githubusercontent.com/299584/209019656-bc7c6823-9e72-4839-ae48-9d99f9de8c6f.png" width=200 height=433> <img src="https://user-images.githubusercontent.com/299584/209019650-e889b64f-f744-4f79-b8af-d43ef6d252dd.png" width=200 height=433> <img src="https://user-images.githubusercontent.com/299584/209019646-3da296d1-8ba0-4ee6-b43c-55cab1dc5fa8.png" width=200 height=433> <img src="https://user-images.githubusercontent.com/299584/209019649-60ae8350-7e8b-49a3-8522-92288829aa09.png" width=200 height=433> 
+
+![Detail-Reviews]()
 
 
 ## How to run
