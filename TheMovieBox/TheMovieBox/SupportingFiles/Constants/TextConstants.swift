@@ -8,7 +8,6 @@
 import Foundation
 
 struct TextConstants {
-    
     static let home = "Home"
     static let movies = "Movies"
     static let movieDetail = "Movie Detail"
