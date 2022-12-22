@@ -14,7 +14,6 @@ class MovieDetailVC: BaseVC {
         super.viewDidLoad()
         setupUI()
         initVM()
-        
     }
     
     func setupUI() {
@@ -44,13 +43,17 @@ class MovieDetailVC: BaseVC {
         viewModel.getMovieDetail()
     }
     
-    
     private func reloadData() -> (() -> Void) {
         return { [ weak self] in
             guard let self = self else { return }
             self.tableView.reloadData()
         }
-    }    
+    }
+    
+    private func coordinator() -> MovieDetailCoordinator? {
+        guard let coordinator = coordinator as? MovieDetailCoordinator else { return nil }
+        return coordinator
+    }
 }
 
 
@@ -101,16 +104,16 @@ extension MovieDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieDetailVC: DashboardMoviesRowCellDelegate {
     func didTappedMovieItem(model: MovieModel) {
-        (self.coordinator as? MovieDetailCoordinator)?.goMovieDetail(movie: model)
+        coordinator()?.goMovieDetail(movie: model)
     }
 }
 
 extension MovieDetailVC: DetailHeaderCellDelegate {
     func didTappedBack() {
-        coordinator?.goBack()
+        coordinator()?.goBack()
     }
     
     func didTappedHome() {
-        (self.coordinator as? MovieDetailCoordinator)?.goHome()        
+        coordinator()?.goHome()
     }
 }

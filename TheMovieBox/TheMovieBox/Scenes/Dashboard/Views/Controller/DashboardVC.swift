@@ -46,6 +46,10 @@ class DashboardVC: BaseVC {
             self.tableView.reloadData()
         }
     }
+    private func coordinator() -> DashboardCoordinator? {
+        guard let coordinator = coordinator as? DashboardCoordinator else { return nil }
+        return coordinator
+    }
 }
 
 
@@ -88,6 +92,6 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 extension DashboardVC: DashboardMoviesRowCellDelegate {
     func didTappedMovieItem(model: MovieModel) {
         guard let id = model.id else { return }
-        (self.coordinator as? DashboardCoordinator)?.goMovieDetail(movieID: id)
+        coordinator()?.goMovieDetail(movieID: id)
     }
 }
