@@ -13,6 +13,15 @@ enum DashboardCellType {
     case upcomingMovies(items: [MovieModel])
     case favoriteMovies(items: [MovieModel])
     
+    static func ==(lhs: DashboardCellType, rhs: DashboardCellType) -> Bool {
+        switch (lhs, rhs) {
+        case (.favoriteMovies(_), .favoriteMovies(_)):
+            return true
+        default:
+            return false
+        }
+    }
+    
     public var title : String {
         switch self {
         case .header:
@@ -99,6 +108,7 @@ class DashboardVM {
             self.updateFeed()
             return
         }
+        self.cellTypes.removeAll(where: { $0 == .favoriteMovies(items: movies) })
         self.cellTypes.append(.favoriteMovies(items: movies))
         self.updateFeed()
     }

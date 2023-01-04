@@ -33,8 +33,7 @@ class DetailHeaderCell: UITableViewCell {
         
         addFavoriteButton.setTitle("", for: .normal)
         let likeImage = UIImage(named: "like")?.withRenderingMode(.alwaysTemplate)
-        addFavoriteButton.setImage(likeImage, for: .normal)
-        addFavoriteButton.tintColor = isInFavoriteList ? UIColor.white : UIColor.white.withAlphaComponent(0.5)
+        addFavoriteButton.setImage(likeImage, for: .normal)        
         posterImageView.layer.cornerRadius = StyleConstants.Size.large
         typeView.layer.cornerRadius = StyleConstants.Size.xSmall
         typeView.backgroundColor = StyleConstants.Color.darkYellow
@@ -44,6 +43,7 @@ class DetailHeaderCell: UITableViewCell {
         self.delegate = delegate
         self.model = model
         isInFavoriteList = UserDefaultsManager.shared.isInList(model: model, forKey: .FavoriteMovies)
+        addFavoriteButton.tintColor = isInFavoriteList ? UIColor.white : UIColor.white.withAlphaComponent(0.5)
         let url = URL(string: NetworkConstants.posterBaseUrl + (model.posterPath ?? ""))
         posterImageView.kf.setImage(with: url)
         title.text = model.title
