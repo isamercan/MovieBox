@@ -24,6 +24,12 @@ class BaseCoordinator: Coordinator {
         navigationController?.setViewControllers([vc], animated: true)
     }
     
+    func goHome() {
+        if let controllersCount = navigationController?.viewControllers.count, controllersCount > 1 {
+            navigationController?.viewControllers.removeLast(controllersCount - 1)
+        }
+    }
+    
     func present(_ vc: UIViewController) {
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = true

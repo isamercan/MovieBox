@@ -15,8 +15,4 @@ class MovieDetailCoordinator: BaseCoordinator {
         vc.coordinator = self
         push(vc)
     }
-    
-    func goHome() {
-        start()
-    }
 }
