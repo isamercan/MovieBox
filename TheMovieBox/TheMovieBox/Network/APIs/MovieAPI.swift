@@ -7,9 +7,9 @@
 
 import Foundation
 protocol MovieAPIProtocol {
-    func getMovieDetail(movieId: String, completion: @escaping (_ reviews: MovieModel?, _ error: Error?) -> Void)
-    func getMovieReviews(movieId: String, completion: @escaping (_ reviews: [Review]?, _ error: Error?) -> Void)
-    func getSimilarMovies(movieId: String, completion: @escaping (_ movies: [MovieModel]?, _ error: Error?) -> Void)
+    func getMovieDetail(movieId: String, completion: @escaping (Result<MovieModel?, Error>) -> Void)
+    func getMovieReviews(movieId: String, completion: @escaping (Result<ReviewsResponseModel?, Error>) -> Void)
+    func getSimilarMovies(movieId: String, completion: @escaping (Result<MoviesResponseModel?, Error>) -> Void)
 }
 
 class MovieAPI: MovieAPIProtocol {
@@ -19,33 +19,21 @@ class MovieAPI: MovieAPIProtocol {
         self.client = client
     }
     
-    func getMovieDetail(movieId: String, completion: @escaping (MovieModel?, Error?) -> Void) {
-        client.makeRequestWithData(route: Router.movieDetail(id: movieId), response: MovieModel.self) { responseData, error in
-            guard let response = responseData, error == nil else {
-                completion(nil, error)
-                return
-            }
-            completion(response, nil)
+    func getMovieDetail(movieId: String, completion: @escaping (Result<MovieModel?, Error>) -> Void) {
+        client.makeRequestWithData(route: Router.movieDetail(id: movieId), response: MovieModel.self) { result in
+            completion(result)
         }
     }
     
-    func getMovieReviews(movieId: String, completion: @escaping ([Review]?, Error?) -> Void) {
-        client.makeRequestWithData(route: Router.movieReviews(id: movieId), response: ReviewsResponseModel.self) { responseData, error in
-            guard let response = responseData, error == nil else {
-                completion(nil, error)
-                return
-            }
-            completion(response.results, nil)
+    func getMovieReviews(movieId: String, completion: @escaping (Result<ReviewsResponseModel?, Error>) -> Void) {
+        client.makeRequestWithData(route: Router.movieReviews(id: movieId), response: ReviewsResponseModel.self) { result in
+            completion(result)
         }
     }
     
-    func getSimilarMovies(movieId: String, completion: @escaping ([MovieModel]?, Error?) -> Void) {
-        client.makeRequestWithData(route: Router.similarMovies(id: movieId), response: MoviesResponseModel.self) { responseData, error in
-            guard let response = responseData, error == nil else {
-                completion(nil, error)
-                return
-            }
-            completion(response.results, nil)
+    func getSimilarMovies(movieId: String, completion: @escaping (Result<MoviesResponseModel?, Error>) -> Void) {
+        client.makeRequestWithData(route: Router.similarMovies(id: movieId), response: MoviesResponseModel.self) { result in
+            completion(result)
         }
     }
 }

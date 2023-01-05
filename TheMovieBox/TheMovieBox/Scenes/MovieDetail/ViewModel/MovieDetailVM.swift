@@ -45,47 +45,59 @@ class MovieDetailVM {
         reloadDataClosure?()
     }
         
+    
     func getMovieDetail() {
         cellTypes.removeAll()
-        api.getMovieDetail(movieId: "\(selectedMovieId ?? 0)") { [weak self] (results, error) in
-            guard let self = self, error == nil, let movie = results else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                self?.updateFeed()
-                return
+        api.getMovieDetail(movieId: "\(selectedMovieId ?? 0)") {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movieDetail):
+                if let movie = movieDetail {
+                    self.movie = movie
+                    self.cellTypes.append(.header(model: movie))
+                    self.getSimilarMovies()
+                }
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                self.updateFeed()
             }
-            self.movie = movie
-            self.cellTypes.append(.header(model: movie))
-            self.getSimilarMovies()
         }
     }
     
     func getSimilarMovies() {
         guard let id = selectedMovieId else { return }
-        api.getSimilarMovies(movieId: String(id)) { [weak self] (results, error) in
-            guard let self = self, error == nil, let movies = results, movies.count > 0 else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                self?.updateFeed()
-                return
+        api.getSimilarMovies(movieId: String(id)) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movies):
+                if let movies = movies?.results, movies.count > 0 {
+                    self.cellTypes.append(.similarMovies(items: movies))
+                    self.similarMovies = movies
+                    self.getMovieReviews()
+                }
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                self.updateFeed()
             }
-            self.cellTypes.append(.similarMovies(items: movies))
-            self.similarMovies = movies
-            self.getMovieReviews()
         }
     }
     
-    
     func getMovieReviews() {
         guard let id = selectedMovieId else { return }
-        api.getMovieReviews(movieId: String(id)) { [weak self] (results, error) in
-            guard let self = self, error == nil, let reviews = results, reviews.count > 0 else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                self?.updateFeed()
-                return
+        api.getMovieReviews(movieId: String(id)) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let reviews):
+                if let reviews = reviews?.results, reviews.count > 0 {
+                    self.cellTypes.append(.reviewTitle(title: "Reviews"))
+                    self.cellTypes.append(.reviews(items: reviews))
+                    self.reviews = reviews
+                }
+                self.updateFeed()
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                self.updateFeed()
             }
-            self.cellTypes.append(.reviewTitle(title: "Reviews"))
-            self.cellTypes.append(.reviews(items: reviews))
-            self.reviews = reviews
-            self.updateFeed()
         }
     }
     

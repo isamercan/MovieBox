@@ -68,41 +68,52 @@ class DashboardVM {
     
     func getPopularMovies() {
         self.cellTypes = []
-        api.getMostPopularMovies { [weak self] (results, error) in
-            guard let self = self, error == nil, let movies = results, movies.count > 0 else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                self?.getHighlyRatedMovies()
-                return
+        self.cellTypes.append(.header)
+        api.getMostPopularMovies { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movies):
+                if let movies = movies?.results {
+                    self.cellTypes.append(.popularMovies(items: movies))
+                    self.getHighlyRatedMovies()
+                }
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                self.getHighlyRatedMovies()
             }
-            self.cellTypes.append(.header)
-            self.cellTypes.append(.popularMovies(items: movies))
-            self.getHighlyRatedMovies()
         }
     }
     
     func getHighlyRatedMovies() {
-        api.getHighlyRatedMovies { [weak self] (results, error) in
-            guard let self = self, error == nil, let movies = results, movies.count > 0 else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                self?.getUpcomingMovies()
-                return
+        api.getHighlyRatedMovies { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movies):
+                if let movies = movies?.results, movies.count > 0 {
+                    self.cellTypes.append(.highlyRatedMovies(items: movies))
+                    self.getUpcomingMovies()
+                }
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                self.getUpcomingMovies()
             }
-            self.cellTypes.append(.highlyRatedMovies(items: movies))
-            self.getUpcomingMovies()
         }
     }
     
     func getUpcomingMovies() {
-        api.getUpcomingMovies { [weak self] (results, error) in
-            guard let self = self, error == nil, let movies = results, movies.count > 0 else {
-                self?.alertMessage = error?.localizedDescription ?? ""
-                if self?.cellTypes.count == 0 { self?.cellTypes.append(.empty) }
-                self?.getFavoriteMovies()
-                return
+        api.getUpcomingMovies { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let movies):
+                if let movies = movies?.results, movies.count > 0 {
+                    self.cellTypes.append(.upcomingMovies(items: movies))
+                    self.getFavoriteMovies()
+                }
+            case .failure(let error):
+                self.alertMessage = error.localizedDescription
+                if self.cellTypes.count == 1 { self.cellTypes.append(.empty) }
+                self.getFavoriteMovies()
             }
-            self.cellTypes.append(.upcomingMovies(items: movies))
-            self.getFavoriteMovies()
-            
         }
     }
     
