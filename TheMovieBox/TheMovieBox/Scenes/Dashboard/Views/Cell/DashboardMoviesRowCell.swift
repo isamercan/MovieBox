@@ -17,7 +17,7 @@ class DashboardMoviesRowCell: UITableViewCell {
     }
         
     weak var delegate: DashboardMoviesRowCellDelegate?
-    var moviesRowCellVM: DashboardMoviesRowCellViewModel?
+    var moviesRowCellVM: DashboardMoviesRowCellVM?
     static let heightCell: CGFloat = 340
     static let widthCell: CGFloat = 171
     
@@ -34,7 +34,7 @@ class DashboardMoviesRowCell: UITableViewCell {
     }
         
     func setCellData(title: String, model: [MovieModel], delegate: DashboardMoviesRowCellDelegate, titleColor: UIColor = .white) {
-        moviesRowCellVM = DashboardMoviesRowCellViewModel(movies: model)
+        moviesRowCellVM = DashboardMoviesRowCellVM(movies: model)
         titleLabel.text = title
         titleLabel.textColor = titleColor
         self.delegate = delegate

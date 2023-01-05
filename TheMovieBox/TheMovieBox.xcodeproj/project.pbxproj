@@ -26,7 +26,7 @@
 		4AC5F76F2953CAD200FDB0E8 /* Movie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC5F72B2953CAD100FDB0E8 /* Movie.storyboard */; };
 		4AC5F7702953CAD200FDB0E8 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC5F72C2953CAD100FDB0E8 /* Dashboard.storyboard */; };
 		4AC5F7712953CAD200FDB0E8 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F72D2953CAD100FDB0E8 /* BaseVC.swift */; };
-		4AC5F7722953CAD200FDB0E8 /* DashboardMoviesRowCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellViewModel.swift */; };
+		4AC5F7722953CAD200FDB0E8 /* DashboardMoviesRowCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellVM.swift */; };
 		4AC5F7732953CAD200FDB0E8 /* DashboardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F7312953CAD100FDB0E8 /* DashboardVM.swift */; };
 		4AC5F7742953CAD200FDB0E8 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F7332953CAD100FDB0E8 /* DashboardCoordinator.swift */; };
 		4AC5F7752953CAD200FDB0E8 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F7372953CAD100FDB0E8 /* DashboardVC.swift */; };
@@ -111,7 +111,7 @@
 		4AC5F72B2953CAD100FDB0E8 /* Movie.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Movie.storyboard; sourceTree = "<group>"; };
 		4AC5F72C2953CAD100FDB0E8 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		4AC5F72D2953CAD100FDB0E8 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMoviesRowCellViewModel.swift; sourceTree = "<group>"; };
+		4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMoviesRowCellVM.swift; sourceTree = "<group>"; };
 		4AC5F7312953CAD100FDB0E8 /* DashboardVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVM.swift; sourceTree = "<group>"; };
 		4AC5F7332953CAD100FDB0E8 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		4AC5F7372953CAD100FDB0E8 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		4AC5F72F2953CAD100FDB0E8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellViewModel.swift */,
+				4AC5F7302953CAD100FDB0E8 /* DashboardMoviesRowCellVM.swift */,
 				4AC5F7312953CAD100FDB0E8 /* DashboardVM.swift */,
 			);
 			path = ViewModels;
@@ -814,7 +814,7 @@
 				4AC5F7952953CAD200FDB0E8 /* StorableModel.swift in Sources */,
 				4AC5F7732953CAD200FDB0E8 /* DashboardVM.swift in Sources */,
 				4AC5F76C2953CAD200FDB0E8 /* DashboardAPI.swift in Sources */,
-				4AC5F7722953CAD200FDB0E8 /* DashboardMoviesRowCellViewModel.swift in Sources */,
+				4AC5F7722953CAD200FDB0E8 /* DashboardMoviesRowCellVM.swift in Sources */,
 				4AC5F7782953CAD200FDB0E8 /* DashboardMoviesColCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
