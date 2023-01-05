@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		488D3432A551748E9E433065 /* Pods_TheMovieBoxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A38FEBFC67005BFC925BF9 /* Pods_TheMovieBoxTests.framework */; };
+		4A8044AD29663E46002E3268 /* EmptyStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8044AB29663E46002E3268 /* EmptyStateCell.swift */; };
+		4A8044AE29663E46002E3268 /* EmptyStateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8044AC29663E46002E3268 /* EmptyStateCell.xib */; };
+		4A8044B02966429D002E3268 /* EmptyStateCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8044AF2966429D002E3268 /* EmptyStateCellDelegate.swift */; };
+		4A8044B32966469C002E3268 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8044B22966469C002E3268 /* ConnectivityManager.swift */; };
 		4AC5F6F42953C9AA00FDB0E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F6F32953C9AA00FDB0E8 /* AppDelegate.swift */; };
 		4AC5F6F62953C9AA00FDB0E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5F6F52953C9AA00FDB0E8 /* SceneDelegate.swift */; };
 		4AC5F6FD2953C9AB00FDB0E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AC5F6FC2953C9AB00FDB0E8 /* Assets.xcassets */; };
@@ -85,6 +89,10 @@
 /* Begin PBXFileReference section */
 		381B6F63D42D14ADB43A293E /* Pods-TheMovieBoxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieBoxTests.release.xcconfig"; path = "Target Support Files/Pods-TheMovieBoxTests/Pods-TheMovieBoxTests.release.xcconfig"; sourceTree = "<group>"; };
 		402C6A305FD20769DB0AE946 /* Pods_TheMovieBox_TheMovieBoxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheMovieBox_TheMovieBoxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8044AB29663E46002E3268 /* EmptyStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCell.swift; sourceTree = "<group>"; };
+		4A8044AC29663E46002E3268 /* EmptyStateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateCell.xib; sourceTree = "<group>"; };
+		4A8044AF2966429D002E3268 /* EmptyStateCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCellDelegate.swift; sourceTree = "<group>"; };
+		4A8044B22966469C002E3268 /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		4AC5F6F02953C9AA00FDB0E8 /* TheMovieBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC5F6F32953C9AA00FDB0E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AC5F6F52953C9AA00FDB0E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +431,8 @@
 				4AC5F74E2953CAD100FDB0E8 /* ReviewCell.swift */,
 				4AC5F74F2953CAD100FDB0E8 /* TitleHeaderCell.swift */,
 				4AC5F7502953CAD100FDB0E8 /* DetailHeaderCell.swift */,
+				4A8044AB29663E46002E3268 /* EmptyStateCell.swift */,
+				4A8044AC29663E46002E3268 /* EmptyStateCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -431,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC5F7522953CAD100FDB0E8 /* DetailHeaderCellDelegate.swift */,
+				4A8044AF2966429D002E3268 /* EmptyStateCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -470,6 +481,7 @@
 				4AC5F75D2953CAD200FDB0E8 /* Coordinator */,
 				4AC5F7632953CAD200FDB0E8 /* UserDefaultsManager.swift */,
 				4AC5F7642953CAD200FDB0E8 /* AlertManager.swift */,
+				4A8044B22966469C002E3268 /* ConnectivityManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -628,6 +640,7 @@
 				4AC5F7792953CAD200FDB0E8 /* DashboardMoviesRowCell.xib in Resources */,
 				4AC5F7762953CAD200FDB0E8 /* DashboardHeaderCell.xib in Resources */,
 				4AC5F7702953CAD200FDB0E8 /* Dashboard.storyboard in Resources */,
+				4A8044AE29663E46002E3268 /* EmptyStateCell.xib in Resources */,
 				4AC5F7802953CAD200FDB0E8 /* TitleHeaderCell.xib in Resources */,
 				4AC5F77B2953CAD200FDB0E8 /* DashboardMoviesColCell.xib in Resources */,
 				4AC5F7822953CAD200FDB0E8 /* ReviewCell.xib in Resources */,
@@ -776,12 +789,14 @@
 				4AC5F78D2953CAD200FDB0E8 /* BaseCoordinator.swift in Sources */,
 				4AC5F77C2953CAD200FDB0E8 /* DashboardMoviesRowCellDelegate.swift in Sources */,
 				4AC5F7752953CAD200FDB0E8 /* DashboardVC.swift in Sources */,
+				4A8044AD29663E46002E3268 /* EmptyStateCell.swift in Sources */,
 				4AC5F78F2953CAD200FDB0E8 /* MovieDetailing.swift in Sources */,
 				4AC5F7942953CAD200FDB0E8 /* MoviesResponseModel.swift in Sources */,
 				4AC5F78E2953CAD200FDB0E8 /* MovieListDetailing.swift in Sources */,
 				4AC5F7972953CAD200FDB0E8 /* ReviewsResponseModel.swift in Sources */,
 				4AC5F7902953CAD200FDB0E8 /* Coordinator.swift in Sources */,
 				4AC5F76D2953CAD200FDB0E8 /* Client.swift in Sources */,
+				4A8044B02966429D002E3268 /* EmptyStateCellDelegate.swift in Sources */,
 				4AC5F7922953CAD200FDB0E8 /* AlertManager.swift in Sources */,
 				4AC5F7852953CAD200FDB0E8 /* DetailHeaderCell.swift in Sources */,
 				4AC5F7932953CAD200FDB0E8 /* ReviewModel.swift in Sources */,
@@ -790,6 +805,7 @@
 				4AC5F76E2953CAD200FDB0E8 /* Router.swift in Sources */,
 				4AC5F77E2953CAD200FDB0E8 /* MovieDetailCoordinator.swift in Sources */,
 				4AC5F7712953CAD200FDB0E8 /* BaseVC.swift in Sources */,
+				4A8044B32966469C002E3268 /* ConnectivityManager.swift in Sources */,
 				4AC5F7862953CAD200FDB0E8 /* DetailHeaderCellDelegate.swift in Sources */,
 				4AC5F78C2953CAD200FDB0E8 /* UIColor+Hex.swift in Sources */,
 				4AC5F7912953CAD200FDB0E8 /* UserDefaultsManager.swift in Sources */,

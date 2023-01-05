@@ -25,6 +25,7 @@ class DashboardVC: BaseVC {
     func setupUI() {
         view.backgroundColor = StyleConstants.Color.darkBlue
         tableView.backgroundColor = StyleConstants.Color.darkBlue
+        tableView.register(EmptyStateCell.self)
         tableView.register(DashboardHeaderCell.self)
         tableView.register(DashboardMoviesRowCell.self)
         tableView.delegate = self
@@ -65,6 +66,10 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feed = viewModel.cellTypes[indexPath.row]
         switch feed {
+        case .empty:
+            let cell: EmptyStateCell = tableView.dequeue(cellForRowAt: indexPath)
+            cell.setCellData(delegate: self)
+            return cell
         case .header:
             let cell: DashboardHeaderCell = tableView.dequeue(cellForRowAt: indexPath)
             return cell
@@ -93,5 +98,13 @@ extension DashboardVC: DashboardMoviesRowCellDelegate {
     func didTappedMovieItem(model: MovieModel) {
         guard let id = model.id else { return }
         coordinator()?.goMovieDetail(movieID: id)
+    }
+}
+
+
+extension DashboardVC: EmptyStateCellDelegate {
+    func didTappedRefresh() {
+        guard ConnectivityManager.isConnectedToInternet else { return }
+        viewModel.getPopularMovies()
     }
 }

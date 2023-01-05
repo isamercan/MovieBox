@@ -7,6 +7,7 @@
 
 import UIKit
 enum DashboardCellType {
+    case empty
     case header
     case popularMovies(items: [MovieModel])
     case highlyRatedMovies(items: [MovieModel])
@@ -24,6 +25,8 @@ enum DashboardCellType {
     
     public var title : String {
         switch self {
+        case .empty:
+            return "Empty"
         case .header:
             return "Muvi"
         case .popularMovies:
@@ -64,13 +67,13 @@ class DashboardVM {
     }
     
     func getPopularMovies() {
+        self.cellTypes = []
         api.getMostPopularMovies { [weak self] (results, error) in
             guard let self = self, error == nil, let movies = results, movies.count > 0 else {
                 self?.alertMessage = error?.localizedDescription ?? ""
                 self?.getHighlyRatedMovies()
                 return
             }
-            self.cellTypes = []
             self.cellTypes.append(.header)
             self.cellTypes.append(.popularMovies(items: movies))
             self.getHighlyRatedMovies()
@@ -93,6 +96,7 @@ class DashboardVM {
         api.getUpcomingMovies { [weak self] (results, error) in
             guard let self = self, error == nil, let movies = results, movies.count > 0 else {
                 self?.alertMessage = error?.localizedDescription ?? ""
+                if self?.cellTypes.count == 0 { self?.cellTypes.append(.empty) }
                 self?.getFavoriteMovies()
                 return
             }

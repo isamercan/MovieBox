@@ -7,6 +7,7 @@
 
 import Foundation
 enum MovieDetailCellType {
+    case empty
     case header(model: MovieModel)
     case info
     case similarMovies(items: [MovieModel])
@@ -20,6 +21,7 @@ class MovieDetailVM {
     var selectedMovieId: Int!
     var movie: MovieModel?
     var similarMovies: [MovieModel] = []
+    var favoriteMovies: [MovieModel] = []
     var reviews: [Review] = []
     var showAlertClosure: ((String) -> Void)?
     var reloadDataClosure: (() -> Void)?
@@ -33,13 +35,18 @@ class MovieDetailVM {
     }
     init(movieId: Int) {
         selectedMovieId = movieId
+        getFavoriteMovies()
     }
     
     func updateFeed() {
+        if cellTypes.count == 0 {
+            cellTypes.append(.empty)
+        }
         reloadDataClosure?()
     }
         
     func getMovieDetail() {
+        cellTypes.removeAll()
         api.getMovieDetail(movieId: "\(selectedMovieId ?? 0)") { [weak self] (results, error) in
             guard let self = self, error == nil, let movie = results else {
                 self?.alertMessage = error?.localizedDescription ?? ""
@@ -80,6 +87,14 @@ class MovieDetailVM {
             self.reviews = reviews
             self.updateFeed()
         }
+    }
+    
+    func getFavoriteMovies() {
+        let movies = UserDefaultsManager.shared.getStoredMovies(forKey: .FavoriteMovies)
+        guard movies.count > 0 else {
+            return
+        }
+        self.favoriteMovies = movies
     }
     
 }

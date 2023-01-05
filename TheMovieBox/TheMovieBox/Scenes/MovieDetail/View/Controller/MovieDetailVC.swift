@@ -21,7 +21,8 @@ class MovieDetailVC: BaseVC {
         title = TextConstants.movieDetail
         let textAttributes = [NSAttributedString.Key.foregroundColor:StyleConstants.Color.lightGreen]
         navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
-        
+                
+        tableView.register(EmptyStateCell.self)
         tableView.register(TitleHeaderCell.self)
         tableView.register(DashboardMoviesRowCell.self)
         tableView.register(DetailHeaderCell.self)
@@ -79,6 +80,10 @@ extension MovieDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feed = viewModel.cellTypes[indexPath.section]
         switch feed {
+        case .empty:
+            let cell: EmptyStateCell = tableView.dequeue(cellForRowAt: indexPath)
+            cell.setCellData(delegate: self)
+            return cell
         case .header(let model):
             let cell: DetailHeaderCell = tableView.dequeue(cellForRowAt: indexPath)
             cell.setCellData(model: model, delegate: self)
@@ -115,5 +120,13 @@ extension MovieDetailVC: DetailHeaderCellDelegate {
     
     func didTappedHome() {
         coordinator()?.goHome()
+    }
+}
+
+
+extension MovieDetailVC: EmptyStateCellDelegate {
+    func didTappedRefresh() {
+        guard ConnectivityManager.isConnectedToInternet else { return }
+        viewModel.getMovieDetail()
     }
 }
